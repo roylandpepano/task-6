@@ -5,6 +5,7 @@ import PromoFeatures from "./components/PromoFeatures";
 import Accordion from "./components/Accordion";
 import { useState, useEffect, useRef } from "react";
 import primeputtImages from "../data/primeputtImages";
+import ImageCarousel from "./components/ImageCarousel";
 
 export default function Home() {
    const [selectedSize, setSelectedSize] = useState("Standard");
@@ -146,55 +147,15 @@ export default function Home() {
 
          <main className="max-w-7xl mx-auto px-6 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
-               {/* Left: Image and thumbnails (static) */}
+               {/* Left: Image carousel */}
                <section
-                  className={`flex flex-col items-center lg:items-start gap-6 sticky top-24 self-start ${
+                  className={`w-full sticky top-24 self-start ${
                      leftScrolledUp
                         ? "-translate-y-10 transition-transform duration-300"
                         : ""
                   }`}
                >
-                  <div className="w-full rounded-2xl bg-[#0f0f0f] p-8 shadow-lg">
-                     <div className="relative w-full h-[420px] rounded-xl overflow-hidden flex items-center justify-center">
-                        {primeputtImages[0] ? (
-                           // Use plain img for external images to avoid Next.js remote config
-                           // First image as main
-                           // eslint-disable-next-line @next/next/no-img-element
-                           <img
-                              src={primeputtImages[0]}
-                              alt="Product image"
-                              className="object-contain w-full h-full"
-                           />
-                        ) : (
-                           <Image
-                              src="/next.svg"
-                              alt="Product image"
-                              width={900}
-                              height={420}
-                              className="object-contain"
-                              priority
-                           />
-                        )}
-                     </div>
-                  </div>
-
-                  <div className="w-full flex items-center gap-3 overflow-x-auto">
-                     <div className="flex gap-3">
-                        {primeputtImages.map((src, idx) => (
-                           <div
-                              key={idx}
-                              className="w-24 h-14 rounded-md bg-[#111] p-1 flex items-center justify-center"
-                           >
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img
-                                 src={src}
-                                 alt={`thumb-${idx}`}
-                                 className="object-contain w-full h-full"
-                              />
-                           </div>
-                        ))}
-                     </div>
-                  </div>
+                  <ImageCarousel images={primeputtImages} />
                </section>
 
                {/* Right: Product details */}
