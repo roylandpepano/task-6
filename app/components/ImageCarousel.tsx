@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -18,18 +18,6 @@ export default function ImageCarousel({ images }: Props) {
    const [modalIndex, setModalIndex] = useState<number | null>(null);
    const closeBtnRef = useRef<HTMLButtonElement | null>(null);
    const thumbsRef = useRef<HTMLDivElement | null>(null);
-
-   useEffect(() => {
-      function onKey(e: KeyboardEvent) {
-         if (modalIndex === null) {
-            if (e.key === "ArrowRight") next();
-            if (e.key === "ArrowLeft") prev();
-         }
-         if (e.key === "Escape" && modalIndex !== null) setModalIndex(null);
-      }
-      window.addEventListener("keydown", onKey);
-      return () => window.removeEventListener("keydown", onKey);
-   }, [index, modalIndex]);
 
    // lock scrolling when modal is open
    useEffect(() => {
@@ -66,13 +54,30 @@ export default function ImageCarousel({ images }: Props) {
       }
    }, [index]);
 
-   function next() {
+   const next = useCallback(() => {
       setIndex((i) => (i + 1) % images.length);
-   }
+   }, [images.length]);
 
-   function prev() {
+   const prev = useCallback(() => {
       setIndex((i) => (i - 1 + images.length) % images.length);
-   }
+   }, [images.length]);
+
+   useEffect(() => {
+      function onKey(e: KeyboardEvent) {
+         if (e.key === "Escape" && modalIndex !== null) {
+            setModalIndex(null);
+            return;
+         }
+
+         // only navigate when modal is closed
+         if (modalIndex === null) {
+            if (e.key === "ArrowRight") next();
+            if (e.key === "ArrowLeft") prev();
+         }
+      }
+      window.addEventListener("keydown", onKey);
+      return () => window.removeEventListener("keydown", onKey);
+   }, [modalIndex, next, prev]);
 
    if (!images || images.length === 0) return null;
 
@@ -235,6 +240,7 @@ export default function ImageCarousel({ images }: Props) {
                            style={{ width: 120, height: 72 }}
                         >
                            <div className="relative w-full h-full">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                  src={thumbSrc}
                                  alt={`thumb-${i}`}
