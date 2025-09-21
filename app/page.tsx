@@ -6,6 +6,7 @@ import Accordion from "./components/Accordion";
 import { useState, useEffect, useRef } from "react";
 import primeputtImages from "../data/primeputtImages";
 import ImageCarousel from "./components/ImageCarousel";
+import PromoBanner from "./components/PromoBanner";
 
 export default function Home() {
    const [selectedSize, setSelectedSize] = useState("Standard");
@@ -156,6 +157,9 @@ export default function Home() {
                   }`}
                >
                   <ImageCarousel images={primeputtImages} />
+                  <div className="mt-[15vh]">
+                     <PromoBanner />
+                  </div>
                </section>
 
                {/* Right: Product details */}
