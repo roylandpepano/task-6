@@ -1,4 +1,3 @@
-// Auto-generated list of image URLs from primeputt product page
 const primeputtImages: string[] = [
    "https://primeputt.com/cdn/shop/files/1.webp?v=1714672547&width=1445",
    "https://primeputt.com/cdn/shop/files/2.webp?v=1714672547&width=1445",
