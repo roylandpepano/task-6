@@ -8,6 +8,12 @@ import primeputtImages from "../data/primeputtImages";
 
 export default function Home() {
    const [selectedSize, setSelectedSize] = useState("Standard");
+   const priceMap: Record<string, number> = {
+      Compact: 21800,
+      Standard: 28800,
+      XL: 32300,
+      XXL: 36400,
+   };
    return (
       <div className="min-h-screen bg-black text-white font-sans">
          <header className="sticky top-0 z-40 bg-black/40 backdrop-blur-md border-b border-white/5">
@@ -173,7 +179,7 @@ export default function Home() {
                </h1>
 
                <div className="text-4xl text-white/90 font-semibold mt-5">
-                  ₱28,800 PHP
+                  {`₱${priceMap[selectedSize].toLocaleString("en-US")} PHP`}
                </div>
 
                <hr />
