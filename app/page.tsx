@@ -1,103 +1,213 @@
 import Image from "next/image";
+import primeputtImages from "../data/primeputtImages";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+   return (
+      <div className="min-h-screen bg-black text-white font-sans">
+         <header className="sticky top-0 z-40 bg-black/40 backdrop-blur-md border-b border-white/5">
+            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative">
+               <div className="flex items-center gap-3 z-10">
+                  <div className="text-xl font-bold">PrimePutt</div>
+               </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+               <nav className="hidden md:flex gap-6 text-sm text-white/80 absolute left-1/2 transform -translate-x-1/2">
+                  <a className="px-2 py-1 hover:text-white">Putting Mat</a>
+                  <a className="px-2 py-1 hover:text-white">All Products</a>
+                  <a className="px-2 py-1 hover:text-white">Contact</a>
+               </nav>
+
+               <div className="flex items-center gap-4 text-white/80 z-10">
+                  <button className="p-2 rounded hover:bg-white/5">🔍</button>
+                  <button className="p-2 rounded hover:bg-white/5">👤</button>
+                  <button className="p-2 rounded hover:bg-white/5">🛒</button>
+               </div>
+            </div>
+         </header>
+
+         <main className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* Left: Image and thumbnails (static) */}
+            <section className="flex flex-col items-center lg:items-start gap-6">
+               <div className="w-full rounded-2xl bg-[#0f0f0f] p-8 shadow-lg">
+                  <div className="relative w-full h-[420px] rounded-xl overflow-hidden flex items-center justify-center">
+                     {primeputtImages[0] ? (
+                        // Use plain img for external images to avoid Next.js remote config
+                        // First image as main
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                           src={primeputtImages[0]}
+                           alt="Product image"
+                           className="object-contain w-full h-full"
+                        />
+                     ) : (
+                        <Image
+                           src="/next.svg"
+                           alt="Product image"
+                           width={900}
+                           height={420}
+                           className="object-contain"
+                           priority
+                        />
+                     )}
+                  </div>
+               </div>
+
+               <div className="w-full flex items-center gap-3 overflow-x-auto">
+                  <div className="flex gap-3">
+                     {primeputtImages.map((src, idx) => (
+                        <div
+                           key={idx}
+                           className="w-24 h-14 rounded-md bg-[#111] p-1 flex items-center justify-center"
+                        >
+                           {/* eslint-disable-next-line @next/next/no-img-element */}
+                           <img
+                              src={src}
+                              alt={`thumb-${idx}`}
+                              className="object-contain w-full h-full"
+                           />
+                        </div>
+                     ))}
+                  </div>
+               </div>
+            </section>
+
+            {/* Right: Product details */}
+            <aside className="flex flex-col gap-6">
+               <div className="flex items-center gap-3 text-yellow-400">
+                  <svg
+                     width="84"
+                     height="16"
+                     viewBox="0 0 84 16"
+                     fill="none"
+                     xmlns="http://www.w3.org/2000/svg"
+                  >
+                     <g fill="#FBBF24">
+                        {Array.from({ length: 5 }).map((_, idx) => (
+                           // simple star representation
+                           <path
+                              key={idx}
+                              d="M8 0l2.4 5.2L16 6l-4 3.2L13.2 16 8 13.2 2.8 16 4 9.2 0 6l5.6-.8L8 0z"
+                              transform={`translate(${idx * 16} 0)`}
+                           />
+                        ))}
+                     </g>
+                  </svg>
+                  <div className="text-sm text-white/80">
+                     238+ Reviews by PGA Pros, Coaches & Players
+                  </div>
+               </div>
+
+               <h1 className="text-3xl md:text-4xl font-extrabold">
+                  Tour-Quality Indoor/Outdoor Golf Putting Green
+               </h1>
+
+               <div className="text-2xl text-white/90 font-semibold">
+                  ₱28,800 PHP
+               </div>
+
+               <div className="border-t border-white/5 pt-4">
+                  <div className="text-sm text-white/70 mb-3">
+                     Available size options:
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                     {[
+                        { title: "Compact", subtitle: "9' x 1.5'" },
+                        {
+                           title: "Standard",
+                           subtitle: "9' x 3'",
+                           featured: true,
+                        },
+                        { title: "XL", subtitle: "12' x 3'" },
+                        { title: "XXL", subtitle: "15' x 3'" },
+                     ].map((opt) => (
+                        <div
+                           key={opt.title}
+                           className={`p-3 rounded-md border ${
+                              opt.featured
+                                 ? "border-yellow-400 bg-white/5"
+                                 : "border-white/5"
+                           } text-left`}
+                        >
+                           <div
+                              className={`text-sm font-semibold ${
+                                 opt.featured ? "text-yellow-300" : "text-white"
+                              }`}
+                           >
+                              {opt.title}
+                           </div>
+                           <div className="text-xs text-white/70 mt-1">
+                              {opt.subtitle}
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+
+               <div className="flex flex-col gap-3">
+                  <button className="w-full bg-yellow-400 text-black font-semibold py-3 rounded-md">
+                     ADD TO CART
+                  </button>
+                  <button className="w-full bg-purple-700 text-white font-semibold py-3 rounded-md">
+                     Buy with shop
+                  </button>
+                  <a className="text-sm text-white/70 underline underline-offset-2 self-start">
+                     More payment options
+                  </a>
+               </div>
+
+               <div className="pt-2 border-t border-white/5 flex flex-wrap gap-4 text-sm text-white/80">
+                  <div className="flex items-center gap-2">
+                     <Image
+                        src="/file.svg"
+                        alt="Made in USA"
+                        width={20}
+                        height={20}
+                     />
+                     <div>Made in the USA</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                     >
+                        <circle
+                           cx="12"
+                           cy="12"
+                           r="10"
+                           stroke="white"
+                           strokeOpacity="0.9"
+                           strokeWidth="1.2"
+                        />
+                     </svg>
+                     <div>Stimpmeter Rating: 9–11</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                     >
+                        <rect
+                           x="3"
+                           y="6"
+                           width="18"
+                           height="12"
+                           rx="2"
+                           stroke="white"
+                           strokeOpacity="0.9"
+                           strokeWidth="1.2"
+                        />
+                     </svg>
+                     <div>Free shipping in Continental US</div>
+                  </div>
+               </div>
+            </aside>
+         </main>
+      </div>
+   );
 }
