@@ -242,15 +242,23 @@ export default function Home() {
                            {
                               title: "Compact",
                               label: "Single Hole",
-                              subtitle: `9' x 1.5'`,
+                              subtitle: `9\u2019 x 1.5\u2019`,
                            },
                            {
                               title: "Standard",
                               label: "",
-                              subtitle: `9' x 3'`,
+                              subtitle: `9\u2019 x 3\u2019`,
                            },
-                           { title: "XL", label: "", subtitle: `12' x 3'` },
-                           { title: "XXL", label: "", subtitle: `15' x 3'` },
+                           {
+                              title: "XL",
+                              label: "",
+                              subtitle: `12\u2019 x 3\u2019`,
+                           },
+                           {
+                              title: "XXL",
+                              label: "",
+                              subtitle: `15\u2019 x 3\u2019`,
+                           },
                         ].map((opt) => {
                            const selected = selectedSize === opt.title;
                            return (
@@ -329,8 +337,8 @@ export default function Home() {
                         daily on a quality, tour-grade turf putting green for
                         both indoors &amp; outdoors. Our product offers a true
                         roll with a 9–11 Stimpmeter reading and the most
-                        realistic experience you'll find anywhere outside a real
-                        course.
+                        realistic experience you{"\u2019"}ll find anywhere
+                        outside a real course.
                      </p>
                   </div>
 
@@ -521,22 +529,23 @@ export default function Home() {
                                  </p>
 
                                  <p>
-                                    Even better, PrimePutt's proprietary cup
-                                    design guarantees you'll never have a putt
-                                    blocked by another ball. At the same time,
-                                    these innovative cups perfectly replicate
+                                    Even better, PrimePutt{"\u2019"}s
+                                    proprietary cup design guarantees you
+                                    {"\u2019"}ll never have a putt blocked by
+                                    another ball. At the same time, these
+                                    innovative cups perfectly replicate
                                     full-depth golf cups: the misses miss, and
                                     the makes go in. For setup, our
                                     specially-designed rubberized bottom and
                                     no-memory material mean the PrimePutt mat
-                                    lays flat and doesn't move right out of the
-                                    box every time. These same materials lend
-                                    incredible durability to our putting mats,
-                                    so you can use yours indoors or outdoors,
-                                    putt with the kids, and let the dog walk
-                                    over it—still rest assured that your
-                                    PrimePutt indoor putting mat will last a
-                                    lifetime.
+                                    lays flat and doesn{"\u2019"}t move right
+                                    out of the box every time. These same
+                                    materials lend incredible durability to our
+                                    putting mats, so you can use yours indoors
+                                    or outdoors, putt with the kids, and let the
+                                    dog walk over it—still rest assured that
+                                    your PrimePutt indoor putting mat will last
+                                    a lifetime.
                                  </p>
 
                                  <p>
