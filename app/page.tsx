@@ -242,15 +242,15 @@ export default function Home() {
                            {
                               title: "Compact",
                               label: "Single Hole",
-                              subtitle: "9' x 1.5'",
+                              subtitle: `9' x 1.5'`,
                            },
                            {
                               title: "Standard",
                               label: "",
-                              subtitle: "9' x 3'",
+                              subtitle: `9' x 3'`,
                            },
-                           { title: "XL", label: "", subtitle: "12' x 3'" },
-                           { title: "XXL", label: "", subtitle: "15' x 3'" },
+                           { title: "XL", label: "", subtitle: `12' x 3'` },
+                           { title: "XXL", label: "", subtitle: `15' x 3'` },
                         ].map((opt) => {
                            const selected = selectedSize === opt.title;
                            return (
