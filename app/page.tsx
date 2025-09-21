@@ -200,7 +200,7 @@ export default function Home() {
                {/* Right: Product details */}
                <aside
                   ref={rightRef}
-                  className="flex flex-col gap-6 scrollbar-hide overflow-auto"
+                  className="flex flex-col gap-6 scrollbar-hide overflow-auto p-2"
                   style={{ maxHeight: "calc(100vh - 6rem)" }}
                >
                   <div className="flex items-center gap-3 text-yellow-400">
