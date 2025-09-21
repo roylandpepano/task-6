@@ -34,7 +34,6 @@ export default function Home() {
 
       function onWindowScroll() {
          const atBottom = checkWindowBottom();
-         // also consider right panel bottom
          const rightAtBottom = checkElementBottom(rightRef.current);
          setLeftScrolledUp(atBottom || rightAtBottom);
       }
@@ -48,7 +47,7 @@ export default function Home() {
       window.addEventListener("scroll", onWindowScroll, { passive: true });
       const el = rightRef.current;
       if (el) el.addEventListener("scroll", onRightScroll, { passive: true });
-      // initial check
+
       onWindowScroll();
 
       return () => {
@@ -147,17 +146,46 @@ export default function Home() {
          </header>
 
          <main className="max-w-7xl mx-auto px-6 py-12">
+            {/* Mobile order: Title, Rating, Carousel, Price, Size options */}
+            <div className="block lg:hidden mb-6">
+               <h1 className="text-2xl font-extrabold">
+                  Tour-Quality Indoor/Outdoor Golf Putting Green
+               </h1>
+               <div className="flex items-center gap-3 text-yellow-400 mt-3">
+                  <svg
+                     width="84"
+                     height="16"
+                     viewBox="0 0 84 16"
+                     fill="none"
+                     xmlns="http://www.w3.org/2000/svg"
+                  >
+                     <g fill="#ffc261">
+                        {Array.from({ length: 5 }).map((_, idx) => (
+                           <path
+                              key={idx}
+                              d="M8 0l2.4 5.2L16 6l-4 3.2L13.2 16 8 13.2 2.8 16 4 9.2 0 6l5.6-.8L8 0z"
+                              transform={`translate(${idx * 16} 0)`}
+                           />
+                        ))}
+                     </g>
+                  </svg>
+                  <div className="text-sm text-white/80">
+                     238+ Reviews by PGA Pros, Coaches & Players
+                  </div>
+               </div>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
                {/* Left: Image carousel */}
                <section
-                  className={`w-full sticky top-24 self-start ${
+                  className={`w-full md:sticky md:top-24 self-start ${
                      leftScrolledUp
-                        ? "-translate-y-10 transition-transform duration-300"
+                        ? "md:-translate-y-10 md:transition-transform md:duration-300"
                         : ""
                   }`}
                >
                   <ImageCarousel images={primeputtImages} />
-                  <div className="mt-[15vh]">
+                  <div className="mt-[15vh] hidden md:block">
                      <PromoBanner />
                   </div>
                </section>
@@ -168,34 +196,37 @@ export default function Home() {
                   className="flex flex-col gap-6 scrollbar-hide overflow-auto p-2"
                   style={{ maxHeight: "calc(100vh - 6rem)" }}
                >
-                  <div className="flex items-center gap-3 text-yellow-400">
-                     <svg
-                        width="84"
-                        height="16"
-                        viewBox="0 0 84 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <g fill="#ffc261">
-                           {Array.from({ length: 5 }).map((_, idx) => (
-                              <path
-                                 key={idx}
-                                 d="M8 0l2.4 5.2L16 6l-4 3.2L13.2 16 8 13.2 2.8 16 4 9.2 0 6l5.6-.8L8 0z"
-                                 transform={`translate(${idx * 16} 0)`}
-                              />
-                           ))}
-                        </g>
-                     </svg>
-                     <div className="text-sm text-white/80">
-                        238+ Reviews by PGA Pros, Coaches & Players
+                  {/* Desktop/lg title + rating (hidden on mobile to avoid duplication) */}
+                  <div className="hidden lg:block">
+                     <div className="flex items-center gap-3 text-yellow-400 mb-3">
+                        <svg
+                           width="84"
+                           height="16"
+                           viewBox="0 0 84 16"
+                           fill="none"
+                           xmlns="http://www.w3.org/2000/svg"
+                        >
+                           <g fill="#ffc261">
+                              {Array.from({ length: 5 }).map((_, idx) => (
+                                 <path
+                                    key={idx}
+                                    d="M8 0l2.4 5.2L16 6l-4 3.2L13.2 16 8 13.2 2.8 16 4 9.2 0 6l5.6-.8L8 0z"
+                                    transform={`translate(${idx * 16} 0)`}
+                                 />
+                              ))}
+                           </g>
+                        </svg>
+                        <div className="text-sm text-white/80">
+                           238+ Reviews by PGA Pros, Coaches & Players
+                        </div>
                      </div>
+
+                     <h1 className="text-2xl md:text-4xl font-extrabold">
+                        Tour-Quality Indoor/Outdoor Golf Putting Green
+                     </h1>
                   </div>
 
-                  <h1 className="text-2xl md:text-4xl font-extrabold">
-                     Tour-Quality Indoor/Outdoor Golf Putting Green
-                  </h1>
-
-                  <div className="text-4xl text-white/90 font-semibold mt-5">
+                  <div className="text-4xl text-white/90 font-semibold mt-1 md:mt-5">
                      {`₱${priceMap[selectedSize].toLocaleString("en-US")} PHP`}
                   </div>
 

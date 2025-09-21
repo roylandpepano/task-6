@@ -21,7 +21,6 @@ export default function ImageCarousel({ images }: Props) {
 
    useEffect(() => {
       function onKey(e: KeyboardEvent) {
-         // when modal is open, only allow Escape to close it
          if (modalIndex === null) {
             if (e.key === "ArrowRight") next();
             if (e.key === "ArrowLeft") prev();
