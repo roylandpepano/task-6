@@ -70,3 +70,12 @@ body {
 .chev-rotate {
    transition: transform 160ms ease;
 }
+
+/* Utility: hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+   display: none; /* Safari and Chrome */
+}

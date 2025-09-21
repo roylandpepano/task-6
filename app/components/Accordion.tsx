@@ -11,17 +11,22 @@ type Section = {
 };
 
 export default function Accordion({ sections }: { sections: Section[] }) {
-   const [openId, setOpenId] = useState<string | null>(null);
+   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
 
    function toggle(id: string) {
-      setOpenId((prev) => (prev === id ? null : id));
+      setOpenIds((prev) => {
+         const next = new Set(prev);
+         if (next.has(id)) next.delete(id);
+         else next.add(id);
+         return next;
+      });
    }
 
    return (
       <div className="w-full mt-4 border-t border-white/5 text-sm text-white/80">
          <ul className="divide-y divide-white/5">
             {sections.map((s) => {
-               const isOpen = openId === s.id;
+               const isOpen = openIds.has(s.id);
                return (
                   <li key={s.id} className="py-4">
                      <button
